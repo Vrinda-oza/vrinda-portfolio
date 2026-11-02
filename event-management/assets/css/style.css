@@ -1,0 +1,93 @@
+/* ===== GILDED MIST THEME ===== */
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Neuton:wght@300;700&display=swap');
+
+/* Base Styles */
+body {
+  font-family: 'Neuton', serif;
+  background-color: #E5E5E5;
+  color: #4A3F3A;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, .navbar-brand {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  color: #B38B8D;
+  letter-spacing: 1px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #B38B8D !important;
+  padding: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  color: #EAE6DA !important;
+  font-size: 1.8rem;
+}
+
+.nav-link {
+  color: rgba(234, 230, 218, 0.9) !important;
+  margin: 0 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #4A3F3A !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: transparent;
+  color: #B38B8D;
+  border: 2px solid #B38B8D;
+  padding: 12px 28px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #B38B8D;
+  color: #EAE6DA;
+}
+
+.btn-accent {
+  background-color: #EAE6DA;
+  color: #4A3F3A;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 0;
+}
+
+/* Cards */
+.card {
+  background-color: #EAE6DA;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Footer */
+footer {
+  background-color: #B38B8D;
+  color: #EAE6DA;
+  padding: 3rem 0;
+  margin-top: 4rem;
+}
+
+footer a {
+  color: #EAE6DA !important;
+  text-decoration: underline;
+}

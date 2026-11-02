@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrinda Oza - Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'lg-custom': '1050px', // Custom breakpoint for 1050px
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .compact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .compact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Custom breakpoint for 1050px */
+        @media (max-width: 1050px) {
+            .nav-menu {
+                display: none !important;
+            }
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+        }
+
+        @media (min-width: 1051px) {
+            .nav-menu {
+                display: flex !important;
+            }
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        /* Added for 16:9 aspect ratio images */
+        .aspect-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+        
+        .project-image-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Profile image styles */
+        .profile-image-container {
+            width: 12rem;
+            height: 12rem;
+              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @media (min-width: 768px) {
+            .profile-image-container {
+                width: 14rem;
+                height: 14rem;
+            }
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center; /* This centers the image */
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            filter: grayscale(20%);
+        }
+
+        /* Hover Effect 1: Scale Up with Shadow */
+        .profile-image-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .profile-image-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+        
+        .profile-image-hover:hover .profile-image {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        /* Hover Effect 2: Glow Effect */
+        .profile-glow {
+            transition: all 0.4s ease;
+        }
+        
+        .profile-glow:hover {
+            box-shadow: 
+                0 0 20px rgba(59, 130, 246, 0.4),
+                0 0 40px rgba(59, 130, 246, 0.2),
+                0 0 60px rgba(59, 130, 246, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .profile-glow:hover .profile-image {
+            filter: grayscale(0%) brightness(1.05);
+        }
+
+        /* Hover Effect 3: Border Animation */
+        .profile-border-animate {
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .profile-border-animate::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+            background-size: 400% 400%;
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.4s ease;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .profile-border-animate:hover::before {
+            opacity: 1;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+        }
+        
+        .profile-border-animate:hover .profile-image {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Hover Effect 4: Simple Elegant */
+        .profile-elegant {
+            transition: all 0.4s ease;
+        }
+        
+        .profile-elegant:hover {
+            transform: scale(1.03) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .profile-elegant:hover .profile-image {
+            filter: grayscale(0%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-blue-600">Vrinda Oza</a>
+                
+                <!-- Desktop Menu - Hidden below 1050px -->
+                <div class="nav-menu hidden lg-custom:flex space-x-6">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                    <a href="#skills" class="text-gray-600 hover:text-blue-600 transition">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-600 transition">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition">Contact</a>
+                    <a href="Vrinda_Oza_Resume.pdf" download class="text-gray-600 hover:text-blue-600 transition">Resume</a>
+                </div>
+                
+                <!-- Mobile Menu Button - Show below 1050px -->
+                <button id="mobile-menu-button" class="mobile-menu-btn hidden text-xl" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu hidden lg-custom:hidden mt-4 space-y-3 pb-3">
+                <a href="#home" class="block text-gray-600 hover:text-blue-600 transition py-2">Home</a>
+                <a href="#skills" class="block text-gray-600 hover:text-blue-600 transition py-2">Skills</a>
+                <a href="#projects" class="block text-gray-600 hover:text-blue-600 transition py-2">Projects</a>
+                <a href="#contact" class="block text-gray-600 hover:text-blue-600 transition py-2">Contact</a>
+                <a href="Vrinda_Oza_Resume.pdf" download class="block text-gray-600 hover:text-blue-600 transition py-2">Resume</a>
+            </div>
+        </div>
+    </nav>
+
+   <!-- Hero Section -->
+<section id="home" class="py-8 sm:py-12 bg-white">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+        <!-- Text Content -->
+        <div class="md:w-1/2 mb-8 md:mb-0">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Hi, I'm <span class="text-blue-600">Vrinda Oza</span></h1>
+            <h2 class="text-lg sm:text-xl md:text-2xl mb-4 text-gray-600">Software Developer</h2>
+            <p class="mb-6 text-gray-600 text-sm sm:text-base">I create robust web applications using modern technologies. Passionate about backend development and database management.</p>
+            <!-- Buttons - Desktop view  -->
+            <div class="hidden md:flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-5 py-2.5 rounded-lg font-medium transition text-center">View Projects</a>
+                <a href="#contact" class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 sm:px-5 py-2.5 rounded-lg font-medium transition text-center">Contact Me</a>
+            </div>
+        </div>
+        
+        <!-- Image -->
+        <div class="md:w-1/2 flex justify-center mb-6 md:mb-0">
+            <div class="profile-image-container rounded-full overflow-hidden shadow-md border-4 border-blue-200 bg-white flex items-center justify-center p-1 profile-image-hover">
+                <img src="vrindaimage2.png" alt="Vrinda Oza" class="profile-image">
+            </div>
+        </div>
+        
+        <!-- Buttons - Mobile view -->
+        <div class="md:hidden flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 w-full mt-4">
+            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-5 py-2.5 rounded-lg font-medium transition text-center">View Projects</a>
+            <a href="#contact" class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 sm:px-5 py-2.5 rounded-lg font-medium transition text-center">Contact Me</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-8 sm:py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6 sm:mb-8 text-center">Technical Skills</h2>
+            
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+                <!-- Web Development -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-orange-100 text-orange-600">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Web Development</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fab fa-html5 text-orange-500 mr-2"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-css3-alt text-blue-500 mr-2"></i>
+                            <span>CSS</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-js-square text-yellow-500 mr-2"></i>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backend -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-purple-100 text-purple-600">
+                        <i class="fas fa-server text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Backend</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fab fa-php text-purple-600 mr-2"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-database text-blue-400 mr-2"></i>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Programming -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-blue-100 text-blue-600">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Programming</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fab fa-java text-red-500 mr-2"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-copyright text-green-500 mr-2"></i>
+                            <span>C#</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-green-100 text-green-600">
+                        <i class="fas fa-database text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Database</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-table text-teal-500 mr-2"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-project-diagram text-indigo-500 mr-2"></i>
+                            <span>Database Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Networking -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-teal-100 text-teal-600">
+                        <i class="fas fa-network-wired text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Networking</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-wifi text-green-500 mr-2"></i>
+                            <span>Network Fundamentals</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Learning -->
+                <div class="compact-card bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div class="skill-icon bg-yellow-100 text-yellow-600">
+                        <i class="fas fa-rocket text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-sm sm:text-base">Learning</h3>
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex items-center">
+                            <i class="fab fa-react text-cyan-500 mr-2"></i>
+                            <span>React.js</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-node-js text-green-600 mr-2"></i>
+                            <span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-8 sm:py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6 sm:mb-8 text-center">My Projects</h2>
+            
+            <!-- Project Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
+                
+                <!-- Event Management System -->
+                <div class="compact-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                    <div class="project-image-container aspect-16-9">
+                        <img src="eventimage.jpg" alt="Event Management System" class="project-image">
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Event Management</h3>
+                        <p class="mb-4 text-gray-600 text-sm"> A comprehensive web-based ERP system for event management with multi-role dashboards, 
+                                location-based vendor filtering, secure payment processing, and real-time booking management. 
+                                Includes self-registration for vendors and comprehensive admin controls.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">PHP</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">HTML</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Tailwind CSS</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">JavaScript</span>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                            <a href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition flex items-center justify-center">
+                                <i class="fab fa-github mr-2"></i> Code
+                            </a>
+                            <a href="https://vrinda-portfolio.great-site.net/event-management/pages/index.php" target="_blank" class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded text-sm font-medium transition flex items-center justify-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Project -->
+                <div class="compact-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                    <div class="project-image-container aspect-16-9">
+                        <img src="PortFolio.jpg" alt="Portfolio Project" class="project-image">
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Portfolio(Current)</h3>
+                        <p class="mb-4 text-gray-600 text-sm">  A modern responsive portfolio website showcasing professional skills and projects. 
+                                Features clean design,interactive elements, and optimized performance 
+                                across all devices with integrated contact forms and downloadable resume.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">HTML</span> 
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Tailwind CSS</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">JavaScript</span>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                            <a href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition flex items-center justify-center">
+                                <i class="fab fa-github mr-2"></i> Code
+                            </a>
+                            <a href="http://localhost/portfolio/Vrinda-Oza-Portfolio.html" class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded text-sm font-medium transition flex items-center justify-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-8 sm:py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6 sm:mb-8 text-center">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row max-w-4xl mx-auto gap-6 md:gap-0">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-6">
+                    <h3 class="text-xl font-semibold mb-4">Let's work together!</h3>
+                    <p class="mb-6 text-gray-600 text-sm sm:text-base">I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to say hello, feel free to reach out.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <p class="text-gray-600">vrindaoza2412@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <p class="text-gray-600">+91 7874765836</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Location</p>
+                                <p class="text-gray-600">Vijapur, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.linkedin.com/in/vrinda-oza-02914828b/" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-blue-600 transition" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin text-gray-700 hover:text-white"></i>
+                        </a>
+                        <a href="https://github.com/Vrinda-oza" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-blue-600 transition" aria-label="GitHub Profile">
+                            <i class="fab fa-github text-gray-700 hover:text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ✅ FORM UPDATED FOR PHP -->
+                <div class="md:w-1/2">
+                    <form id="contact-form" action="send_mail.php" method="POST" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block mb-1 text-sm font-medium">Your Name</label>
+                                <input type="text" id="name" name="name" required class="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-1 text-sm font-medium">Your Email</label>
+                                <input type="email" id="email" name="email" required class="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-1 text-sm font-medium">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-1 text-sm font-medium">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded font-medium transition w-full">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-6 border-t border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600">© <span id="current-year"></span> Vrinda Oza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Close mobile menu when a link is clicked
+                mobileMenu.classList.add('hidden');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = event.target.closest('nav');
+            const isMobileMenuButton = event.target.closest('#mobile-menu-button');
+            
+            if (!isClickInsideNav && !isMobileMenuButton) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Update footer year automatically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // ⚠ Contact form ka JS remove kar diya hai
+        // Ab form direct PHP (send_mail.php) ko submit hoga.
+    </script>
+</body>
+</html>
